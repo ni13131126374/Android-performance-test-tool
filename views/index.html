@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script type="text/javascript">
+// ajax 对象
+function ajaxObject() {
+    $.ajax({
+            //几个参数需要注意一下
+                type: "POST",//方法类型
+                dataType: "json",//预期服务器返回的数据类型
+                url: "/performance" ,//url
+                data: $('#form1').serialize(),
+                success: function (result) {
+                    console.log(result);//打印服务端返回的数据(调试用)
+                    if (result.resultCode == 200) {
+                        alert("SUCCESS");
+                    }
+                    ;
+                },
+                error : function() {
+                    alert("异常！");
+                }
+            });
+}
+function getmem(){
+var result_data=''
+    {#console.log(getmem)#}
+    {#console.log('getmem')#}
+$.ajax({
+      type: "get",//方法类型
+      dataType: "json",//预期服务器返回的数据类型
+      url: "/meninfo" ,//url
+      dataType: "json",
+      async: false,
+      success: function (result) {
+        {#console.log(resultm,'123');#}
+        result_data=result;
+        console.log('getmem', result.Total);
+        {#Highchart(result);#}
+        //result_data=Number(result);
+       //for (var i in result_data) {
+        //    console.log('键：' + i,123)
+         //   console.log('值：' + data[i],123)
+
+    //}
+        }
+    });
+
+    return result_data;
+}
+</script>
+<script src="jslist/Highcharttest.js">
+</script>>
+<head>
+
+    <meta charset="UTF-8">
+    <title>性能测试</title>
+</head>
+<form id="form1" onsubmit="return false" action="##" method="post">
+请输入测试app包名:<br>
+<input type="text" name="activity" value="com.xxx.xxx">
+<br>
+请输入手机devices:<br>
+<input type="text" name="devices" value="192.168.27.251:5555">
+<br>
+请输入手机测试时间:<br>
+<input type="text" name="time" value="10">
+<br><br>
+<input type="button" value="测试" onclick="ajaxObject();Highchart()">
+</form>
+<div id="container"></div>
+<button onclick="getmem()">点击这里</button>
+<body>
+
+
+</body>
+</html>

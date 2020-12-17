@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Android性能测试</title>
+
+</head>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+<>
+<script src="views/jslist/Highcharttest.js">
+</script>
+<script src="views/jslist/Get.js"></script>
+<script src="views/jslist/Result1.0.js">
+</script>
+<style type="text/css">
+    table.gridtable {
+        width:1300px;margin-left:2em;vertical-align:middle;p-size:13.5px;border-color: #666666;border-width: 2px;border-collapse: collapse;p-family: "Microsoft YaHei";font-size: 10px;}
+    table.gridtable th {
+        border-width: 1px;padding: 8px;word-wrap:break-word;word-break:break-all;color:#000000;background:#3C73AE;border-style: solid;border-color: #666666;background-color:#00E3E3 ;}
+    table.gridtable td {
+        border-width: 1px;padding: 8px;word-wrap:break-word;word-break:break-all;color:#333333;border-style: solid;border-color: #666666;background-color: #ffffff;}
+    p.title1css{
+        font-size: 25px ; font-family:"Microsoft Yahei"; >
+    }
+    p.caveattextcss{font-size: 18px ;text-indent: 2em; font-family:"Microsoft Yahei";color:red;}
+    p.textcss{font-size: 16px ;text-indent: 2em; font-family:"Microsoft Yahei"; }
+    table.gridtable1 {
+        width:200px;margin-left:2em;vertical-align:middle;p-size:13.5px;border-color: #666666;border-width: 2px;border-collapse: collapse;p-family: "Microsoft YaHei";font-size: 10px;}
+    table.gridtable1 th {
+        border-width: 1px;padding: 8px;word-wrap:break-word;word-break:break-all;color:#000000;background:#3C73AE;border-style: solid;border-color: #666666;background-color:#00E3E3 ;}
+    table.gridtable1 td {
+        border-width: 1px;padding: 8px;word-wrap:break-word;word-break:break-all;color:#333333;border-style: solid;border-color: #666666;background-color: #ffffff;}
+</style>
+<form id="formtest">
+    请输入测试app包名:
+    <br>
+    <input type="text" name="PackName" value="com.xxx.xxx">
+    <input type="text" name="Casename" value="测试1">
+    <br>
+    <br>
+    <input type="button" onclick="Highcharttest()" value="测试">
+    <input type="button" onclick="stop()" value="停止测试" id="stop">
+    <input type="button" onclick="ResultMeminfo()" value="查看测试结果">
+</form>
+<div id="container"></div>
+<div id="Result" style="height: 300px;width: 500px"></div>
+<div id="CpuResult" style="height: 300px;width: 500px"></div>
+<p>Graphics：显存使用情况</p>
+<p>Activities：应用活动数</p>
+<table id="Resultdata" class="gridtable">
+    <tr>
+        <th>内存平均值(MB)</th>
+        <th>内存最大差值(MB)</th>
+        <th>Graphics最大值(MB)</th>
+        <th>Activities最大值</th>
+        <th>内存中位数(MB)</th>
+        <th>内存最大值(MB)</th>
+        <th>内存最小值(MB)</th>
+    </tr>
+    <tr>
+        <td id="TotalAverage"></td>
+        <td id="DiffMax"></td>
+        <td id="GraphicsMaxvalue"></td>
+        <td id="activetMax"></td>
+        <td id="TotalMedian"></td>
+        <td id="TotalMaxvalue"></td>
+        <td id="TotalMinvalue"></td>
+
+    </tr>
+</table>
+<br>
+<table id="CPUResultdata" class="gridtable1">
+    <tr>
+        <th>CPU平均值(%)</th>
+    </tr>
+    <tr>
+        <td id="CpuAverage"></td>
+    </tr>
+</table>
+</body>
+
+</html>

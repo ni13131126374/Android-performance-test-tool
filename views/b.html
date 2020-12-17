@@ -1,0 +1,59 @@
+<!doctype html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<html lang="en">
+<head>
+    <title>读取并解析csv</title>
+</head>
+<body>
+<div>
+    无法根据绝对路径直接读取文件吗？一定要通过input吗？
+    读取文本文件：
+    <input type="file" id="file1" accept="*" />
+</div>
+<div>
+    显示进度：
+    <progress id="pro" value="0"></progress>
+</div>
+<div id="result"></div>
+
+<script type="text/javascript">
+    var file1 = document.getElementById('file1');
+    file1.onchange = function () {
+        var file = file1.files[0];
+        //读取为二进制
+        var reader = new FileReader();
+        reader.readAsText(file,'utf-8');
+        //显示进度
+        var pro = document.getElementById('pro');
+        pro.max = file.size;
+        pro.value = 0;
+        reader.onprogress = function (e) {
+            pro.value = e.loaded;
+        }
+        reader.onload = function () {
+            var str = reader.result;
+            var rows = str.split('<br>');
+            /*var clients = [];
+            for(var i =0; i<rows.length; i++){
+                var row =rows[i].split(',') ;
+                var client = {
+                    id:row[0],
+                    company:row[1],
+                    address:row[2],
+                    name:row[3],
+                    phone:row[4],
+                    coord:{x:row[5],y:row[6]}
+                };
+                clients.push(client);
+            }
+            //由对象转为JSON字符串
+            console.log(JSON.stringify(clients));
+            document.getElementById('result').innerHTML = JSON.stringify(clients);
+            */
+            console.log(rows);
+            document.getElementById('result').innerHTML = rows;
+        }
+    }
+</script>
+</body>
+</html>
